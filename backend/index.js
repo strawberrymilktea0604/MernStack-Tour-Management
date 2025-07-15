@@ -3,6 +3,8 @@
     import cors from 'cors';
     import dotenv from 'dotenv';
     import cookieParser from 'cookie-parser';
+    import path from 'path';
+    import { fileURLToPath } from 'url';
 
     import tourRoute from './routes/tours.js';
     import userRoute from './routes/users.js';
@@ -13,8 +15,13 @@
     dotenv.config();
     const app = express();
     const port = process.env.PORT || 8000;
+
+    // ES modules equivalent of __dirname
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
     const corsOptions = {
-        origin: true,
+        origin: ['http://localhost:3000', 'http://localhost:3001'], // Add common React dev server ports
         credentials: true,
     };
 
@@ -32,6 +39,9 @@
     app.use(express.json());
     app.use(cors(corsOptions));
     app.use(cookieParser());
+
+    // Serve static files (images)
+    app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
     app.use("/api/v1/auth", authRoute);
     app.use('/api/v1/tours', tourRoute);

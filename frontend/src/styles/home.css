@@ -51,9 +51,22 @@
 }
 
 .featured__tour-title{
-    font-size: 2.3rem;
-    font-weight: 500;
+    font-size: 2.8rem;
+    font-weight: 700;
     color: var(--heading-color);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.featured__tour-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    opacity: 0.8;
 }
 
 .experience__content h2 {
@@ -112,4 +125,39 @@
 .testimonial__title{
     font-size: 2.3rem;
     margin-top: 1rem;
+}
+
+.featured-tours-header {
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Featured Tours Section Background */
+.featured-tours-section {
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+    padding: 4rem 0;
+    position: relative;
+}
+
+.featured-tours-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="%23667eea" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .featured__tour-title {
+        font-size: 2.2rem;
+    }
+    
+    .featured__tour-subtitle {
+        font-size: 1rem;
+    }
 }

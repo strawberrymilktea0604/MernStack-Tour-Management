@@ -8,6 +8,7 @@ const useFetch = (url = '') => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
+            setError(null); // Reset error state on new request
             try {
                 const res = await fetch(url);
 
@@ -21,9 +22,15 @@ const useFetch = (url = '') => {
                 }
 
                 const result = await res.json();
-                setData(result.data);
+                
+                if (result.success) {
+                    setData(result.data);
+                } else {
+                    throw new Error(result.message || 'Failed to fetch data');
+                }
             } catch (err) {
                 setError(err.message);
+                console.error('Fetch error:', err);
             } finally {
                 setLoading(false);
             }

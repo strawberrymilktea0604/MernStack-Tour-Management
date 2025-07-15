@@ -1,0 +1,60 @@
+/* Modern Color Palette for Tour Management */
+:root {
+    /* Primary Colors */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --primary-color: #667eea;
+    --primary-dark: #5a67d8;
+    --primary-light: #a2b2ff;
+    
+    /* Secondary Colors */
+    --secondary-color: #ffc107;
+    --secondary-dark: #ffb300;
+    --secondary-light: #fff3cd;
+    
+    /* Neutral Colors */
+    --dark-color: #2c3e50;
+    --text-color: #6c757d;
+    --light-gray: #f8f9fa;
+    --border-color: #e9ecef;
+    
+    /* Background Colors */
+    --bg-gradient: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+    --card-bg: #ffffff;
+    --section-bg: #f8f9fa;
+    
+    /* Shadow */
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+    
+    /* Success/Error Colors */
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    
+    /* Border Radius */
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --border-radius-xl: 20px;
+    --border-radius-full: 50px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* Dark mode variables (optional) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dark-color: #ffffff;
+        --text-color: #cbd5e0;
+        --light-gray: #2d3748;
+        --border-color: #4a5568;
+        --card-bg: #1a202c;
+        --section-bg: #2d3748;
+        --bg-gradient: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    }
+}

@@ -33,32 +33,42 @@ const Booking = ({tour, avgRating}) => {
     const handleClick = async e => {
         e.preventDefault();
 
-        console.log(booking);
+        const bookingData = {
+            ...booking,
+            totalAmount: totalAmount
+        };
+
+        console.log(bookingData);
 
         try {
             if(!user || user === undefined || user === null){
                 return alert('Please sign in')
             }
 
-            const res = await fetch(`${BASE_URL}/booking`,{
+            const res = await fetch(`${BASE_URL}/bookings`,{
                 method :'post',
                 headers : {
                     'content-type':'application/json'
                 },
                 credentials:'include',
-                body:JSON.stringify(booking)
+                body:JSON.stringify(bookingData)
             })
+
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
 
             const result = await res.json()
 
-            if(!res.ok){
-                return alert(result.message)
+            if(result.success){
+                navigate("/thank-you");
+            } else {
+                alert(result.message || 'Booking failed');
             }
 
-            navigate("/thank-you");
-
         } catch (error) {
-            alert(error.message)
+            console.error('Booking error:', error);
+            alert('Booking failed: ' + error.message);
         }
 
         
@@ -81,11 +91,11 @@ const Booking = ({tour, avgRating}) => {
                     <input type="text" placeholder="Full Name" id = "fullName" required onChange = {handleChange} />
                 </FormGroup>
                 <FormGroup className="form__group">
-                    <input type="email" placeholder="Phone" id = "phone" required onChange = {handleChange} />
+                    <input type="tel" placeholder="Phone" id = "phone" required onChange = {handleChange} />
                 </FormGroup>
                 <FormGroup className="d-flex align-items-center gap-3">
                     <input type="date" placeholder="" id="bookAt" required onChange = {handleChange} />
-                    <input type="Guest" placeholder="" id="guestSize" required onChange = {handleChange} />
+                    <input type="number" placeholder="Guest Size" id="guestSize" required onChange = {handleChange} />
                 </FormGroup>
             </Form>
             
@@ -96,18 +106,18 @@ const Booking = ({tour, avgRating}) => {
         <div className="booking__bottom">
             <ListGroup>
                 <ListGroupItem className="border-0 px-0">
-                    <h5 d-flex align-items-center gap-1>
-                        ${price} <i class="ri-close-line"></i> 1 person
+                    <h5 className="d-flex align-items-center gap-1">
+                        ${price} <i className="ri-close-line"></i> {booking.guestSize} person
                     </h5>
-                    <span>${price}</span>
+                    <span>${Number(price) * Number(booking.guestSize)}</span>
                 </ListGroupItem>
                 <ListGroupItem className="border-0 px-0">
                     <h5>Service charge</h5>
-                    <span>$(serviceFee)</span>
+                    <span>${serviceFee}</span>
                 </ListGroupItem>
                 <ListGroupItem className="border-0 px-0 total">
                     <h5>Total</h5>
-                    <span>$(totalAmount)</span>
+                    <span>${totalAmount}</span>
                 </ListGroupItem>
             </ListGroup>
             <Button className="btn primary__btn w-100 mt-4" onClick={handleClick}>Book Now</Button>

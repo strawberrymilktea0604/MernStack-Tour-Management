@@ -79,12 +79,17 @@ const Home = () => {
     </section>
 
     {/*====== Feature tour section start ====== */}
-    <section>
+    <section className="featured-tours-section">
         <Container>
             <Row>
                 <Col lg='12' className='mb-5'>
-                    <Subtitle subtitle='Explore' />
-                    <h2 className='featured__tour-title'>Our Featured Tours</h2>
+                    <div className="featured-tours-header text-center">
+                        <Subtitle subtitle='Explore' />
+                        <h2 className='featured__tour-title'>Our Featured Tours</h2>
+                        <p className="featured__tour-subtitle">
+                            Discover amazing destinations handpicked by our travel experts
+                        </p>
+                    </div>
                 </Col>
 
                 <FeaturedTourList />

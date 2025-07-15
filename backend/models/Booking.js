@@ -22,12 +22,15 @@ const bookingSchema = new mongoose.Schema(
         required: true,
     },
     phone: {
-        type: Number,
+        type: String,
         required: true,
     },
     bookAt: {
         type: Date,
         required: true,
+    },
+    totalAmount: {
+        type: Number,
     },
 },
     { timestamps: true }
